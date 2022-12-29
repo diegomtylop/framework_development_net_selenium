@@ -12,6 +12,7 @@
     <None Remove="Extentions\" />
     <None Remove="Selenium.WebDriver" />
     <None Remove="Selenium.Support" />
+    <None Remove="Xunit.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />

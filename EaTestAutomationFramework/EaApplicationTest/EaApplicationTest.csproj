@@ -20,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
+    <PackageReference Include="Xunit.DependencyInjection" Version="8.6.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
     <None Remove="Pages\" />
     <None Remove="Models\" />
     <None Remove="AutoFixture.Xunit2" />
+    <None Remove="Xunit.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

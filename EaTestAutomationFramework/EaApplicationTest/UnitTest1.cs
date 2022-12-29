@@ -14,20 +14,10 @@ public class UnitTest1:IDisposable
     private IDriverFixture _driverFixture;
     private ICustomDriverWait _driverWait;
 
-    public UnitTest1()
+    public UnitTest1(IDriverFixture injectedDriverFixture, ICustomDriverWait injectedDriverWait)
     {
-        //var testSettings = new TestSettings()
-        //{
-        //    BrowserType = BrowserType.Chrome,
-        //    ApplicationUrl = new Uri("http://localhost:8000"),
-        //    TimeOutInterval = 30
-        //};
-        //Reading the configuration from the JSON file
-        var testSettings = ConfigReader.ReadConfig();
-
-        _driverFixture = new DriverFixture(testSettings);
-
-        _driverWait = new CustomDriverWait(_driverFixture, testSettings);
+        this._driverFixture = injectedDriverFixture;
+        this._driverWait = injectedDriverWait;
     }
 
     [Fact]
