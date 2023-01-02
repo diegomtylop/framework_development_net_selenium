@@ -1,23 +1,23 @@
 ﻿using AutoFixture.Xunit2;
 using EaApplicationTest.Models;
 using EaApplicationTest.Pages;
-using EaFramework.Config;
-using EaFramework.Driver;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace EaApplicationTest;
 
-public class UnitTest1:IDisposable
+public class UnitTest1
 {
 
     private IDriverFixture _driverFixture;
     private ICustomDriverWait _driverWait;
+    private readonly IHomePageDI _homePageDI;
 
-    public UnitTest1(IDriverFixture injectedDriverFixture, ICustomDriverWait injectedDriverWait)
+    public UnitTest1(IDriverFixture injectedDriverFixture,
+        ICustomDriverWait injectedDriverWait,
+        IHomePageDI injectedHomePage)
     {
         this._driverFixture = injectedDriverFixture;
         this._driverWait = injectedDriverWait;
+        this._homePageDI = injectedHomePage;
     }
 
     [Fact]
@@ -26,6 +26,17 @@ public class UnitTest1:IDisposable
         var homePage = new HomePage(_driverFixture);
         homePage.ClickProduct();
         var productPage = new ProductPage(_driverFixture, _driverWait);
+        productPage.ClickCreateButton();
+        productPage.CreateProduct("Headphone", "Description", "120", "MONITOR");
+    }
+
+    /**
+     * Implementing the initial test but using dependency injection
+     */
+    [Fact]
+    public void CreateProductDI()
+    {
+        var productPage = _homePageDI.ClickProductWithNavigation();
         productPage.ClickCreateButton();
         productPage.CreateProduct("Headphone", "Description", "120", "MONITOR");
     }
@@ -47,7 +58,7 @@ public class UnitTest1:IDisposable
     [InlineData("FirstProduct","New prod description","201","CPU")]
     [InlineData("Second", "New prod description", "202", "MONITOR")]
     [InlineData("Third", "New prod description", "203", "PERIPHARALS")]
-    public void TestWithDDT(
+    public void CreateProductWithDDT(
         string productName,
         string productDesc,
         string productPrice,
@@ -67,7 +78,7 @@ public class UnitTest1:IDisposable
      */ 
     [Theory]
     [AutoData]
-    public void TestWithDTO(Product product)
+    public void CreateProductWithDTO(Product product)
     {
         var homePage = new HomePage(_driverFixture);
         var productPage = homePage.ClickProductWithNavigation();
@@ -76,11 +87,12 @@ public class UnitTest1:IDisposable
     }
 
     //Is the equivalent to @TearDown on NUnit
-    public void Dispose()
+    //Method commented out since it was moved to the DriverFixture class
+    /*public void Dispose()
     {
         //Provisional wait to be able to see the result before closing the browser
         //Thread.Sleep(2000);
         Console.WriteLine("Running the Dispose method");
         _driverFixture.Driver.Quit();
-    }
+    }*/
 }

@@ -31,7 +31,7 @@ public class ProductPage
     private IWebElement ddlProductType => _driverFixture.Driver.FindElement(By.Id("ProductType"));
     private IWebElement btnCreate => _driverFixture.Driver.FindElement(By.LinkText("Create"));
 
-
+    //Automatically injected
     public ProductPage(IDriverFixture fixture, ICustomDriverWait driverWithWait)
     {
         _driverFixture = fixture;

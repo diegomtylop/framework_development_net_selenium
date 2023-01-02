@@ -8,7 +8,7 @@ namespace EaFramework.Driver;
 
 //Factory pattern
 //The Disposable interface is used to quit the driver
-public class DriverFixture : IDriverFixture
+public class DriverFixture : IDriverFixture, IDisposable
 {
 
     public IWebDriver Driver { get; }
@@ -43,6 +43,12 @@ public class DriverFixture : IDriverFixture
             BrowserType.Safari => new SafariDriver(),
             _ => new ChromeDriver()
         };
+    }
+
+    public void Dispose()
+    {
+        Console.WriteLine("Disposing the Driver on the Driver Fixture");
+        Driver.Quit();
     }
 }
 

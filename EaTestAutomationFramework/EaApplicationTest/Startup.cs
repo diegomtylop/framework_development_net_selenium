@@ -1,6 +1,6 @@
 ﻿using System;
+using EaApplicationTest.Pages;
 using EaFramework.Config;
-using EaFramework.Driver;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EaApplicationTest;
@@ -38,6 +38,10 @@ public class Startup
          * _driverWait = new CustomDriverWait(_driverFixture, testSettings);
          */
         services.AddScoped<ICustomDriverWait, CustomDriverWait>();
+
+
+        //Register also the Page object
+        services.AddScoped<IHomePageDI, HomePageDI>();
     }
 }
 

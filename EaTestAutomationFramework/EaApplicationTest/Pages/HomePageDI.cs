@@ -4,22 +4,33 @@ using OpenQA.Selenium;
 
 namespace EaApplicationTest.Pages;
 
-public class HomePage
+/**
+ * Interface of the HomePage to see how the DI
+ * framework is used in the course
+ */
+public interface IHomePageDI
+{
+    void ClickHome();
+    void ClickPrivacy();
+    void ClickProduct();
+    ProductPage ClickProductWithNavigation();
+}
+
+public class HomePageDI : IHomePageDI
 {
 
     private readonly IDriverFixture _driverFixture;
 
 
     //Page Factory is deprecated and this is the suggested way
-	private IWebElement lnkHome => _driverFixture.Driver.FindElement(By.LinkText("Home"));
+    private IWebElement lnkHome => _driverFixture.Driver.FindElement(By.LinkText("Home"));
 
     private IWebElement lnkPrivacy => _driverFixture.Driver.FindElement(By.LinkText("Privacy"));
 
     private IWebElement lnkProduct => _driverFixture.Driver.FindElement(By.LinkText("Product"));
 
-
     //Automatically injected
-    public HomePage( IDriverFixture fixture)
+    public HomePageDI(IDriverFixture fixture)
     {
         _driverFixture = fixture;
     }

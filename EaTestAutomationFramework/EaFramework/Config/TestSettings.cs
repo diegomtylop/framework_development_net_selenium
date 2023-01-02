@@ -11,5 +11,7 @@ public class TestSettings
     public Uri ApplicationUrl { get; set; }
 
     public float? TimeOutInterval { get; set; }
+
+    public int? PollingInterval { get; set; }
 }
 

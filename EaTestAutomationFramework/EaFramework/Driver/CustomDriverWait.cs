@@ -34,9 +34,10 @@ public class CustomDriverWait : ICustomDriverWait
 
     private WebDriverWait GetWebDriverWait()
     {
-        return new(_driverFixture.Driver, timeout: TimeSpan.FromSeconds(_testSettings.TimeOutInterval ?? 30))
+        return new(_driverFixture.Driver,
+            timeout: TimeSpan.FromSeconds(_testSettings.TimeOutInterval ?? 30))
         {
-            PollingInterval = TimeSpan.FromMilliseconds(500)
+            PollingInterval = TimeSpan.FromMilliseconds(_testSettings.PollingInterval?? 500)
         };
     }
 }

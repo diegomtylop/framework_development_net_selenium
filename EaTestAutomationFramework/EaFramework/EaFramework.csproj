@@ -9,7 +9,6 @@
   <ItemGroup>
     <None Remove="Config\" />
     <None Remove="Driver\" />
-    <None Remove="Extentions\" />
     <None Remove="Selenium.WebDriver" />
     <None Remove="Selenium.Support" />
     <None Remove="Xunit.DependencyInjection" />
@@ -18,7 +17,6 @@
     <Folder Include="Config\" />
     <Folder Include="Driver\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Extentions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Selenium.WebDriver" Version="4.7.0" />
